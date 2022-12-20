@@ -8,4 +8,4 @@ docker run \
   -v ruby_volume_rebase_labs:/usr/local/bundle \
   -p 3000:3000 \
   ruby \
-  bash -c "ruby server.rb"
+  bash -c "gem install rack sinatra puma && ruby server.rb"
