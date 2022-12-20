@@ -1,0 +1,9 @@
+#!/bin/bash
+
+docker run \
+  --rm \
+  --name ruby \
+  --network rebase_labs \
+  -it \
+  ruby \
+  bash 
