@@ -3,7 +3,8 @@
 docker run \
   --rm \
   --name ruby \
+  -v ruby_volume_rebase_labs:/usr/local/bundle \
   --network rebase_labs \
   -it \
   ruby \
-  bash 
+  bash -c "gem install pg && bash"

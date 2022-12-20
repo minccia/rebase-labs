@@ -2,7 +2,7 @@
 
 docker run \
   --rm \
-  --name ruby-rebase-labs \
+  --name medical-exams-app \
   -w /app \
   -v $(pwd):/app \
   -v ruby_volume_rebase_labs:/usr/local/bundle \
