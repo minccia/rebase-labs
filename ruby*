@@ -3,8 +3,10 @@
 docker run \
   --rm \
   --name ruby \
+  -w /app \
+  -v $(pwd):/app \
   -v ruby_volume_rebase_labs:/usr/local/bundle \
   --network rebase_labs \
   -it \
   ruby \
-  bash -c "gem install pg && bash"
+  bash -c "gem install pg rspec && rspec --init && bash"
