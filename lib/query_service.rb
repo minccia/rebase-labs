@@ -1,10 +1,9 @@
 require 'pg'
-require_relative 'csv_data_service'
 
-class PostgresQueryService
-  def initialize 
-    @conn = PG.connect(host: 'postgres', dbname: 'postgres', 
-                       user: 'postgres')
+class QueryService
+  def initialize(host, dbname, user)
+    @conn = PG.connect(host: host, dbname: dbname, 
+                       user: user)
   end
 
   def create_table
