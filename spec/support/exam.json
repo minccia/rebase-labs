@@ -1,0 +1,18 @@
+{ 
+  "cpf": "048.123.189-19",
+  "nome paciente": "Ana Júlia",
+  "email paciente": "anajulia@gmail.com",
+  "data nascimento paciente": "2022-09-20",
+  "endereço/rua paciente": "Rua das flores, 59",
+  "cidade paciente": "Fortaleza",
+  "estado patiente": "Ceará",
+  "crm médico": "00122910",
+  "crm médico estado": "CE",
+  "nome médico": "Dra. Ana Julia do Multiverso",
+  "email médico": "anajuliadomultiverso@gmail.com",
+  "token resultado exame": "09209120",
+  "data exame": "2022-09-21",
+  "tipo exame": "exame do pézinho",
+  "limites tipo exame": "100-200",
+  "resultado tipo exame": "132" 
+}
