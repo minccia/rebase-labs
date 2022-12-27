@@ -1,7 +1,9 @@
 require 'pg'
+require_relative 'exam'
+require_relative 'database_translator'
 
 class QueryService
-  def initialize(host, dbname, user)
+  def initialize(host:, dbname:, user:)
     @conn = PG.connect(host: host, dbname: dbname, 
                        user: user)
   end
@@ -9,29 +11,41 @@ class QueryService
   def create_table
     @conn.exec(
       'CREATE TABLE IF NOT EXISTS exams (
-      "cpf" VARCHAR(14),
-      "nome paciente" VARCHAR(100),
-      "email paciente" VARCHAR(100),
-      "data nascimento paciente" DATE,
-      "endereço/rua paciente" VARCHAR(100),
-      "cidade paciente" VARCHAR(50),
-      "estado patiente" VARCHAR(50),
-      "crm médico" VARCHAR(10),
-      "crm médico estado" VARCHAR(50),
-      "nome médico" VARCHAR(100),
-      "email médico" VARCHAR(100),
-      "token resultado exame" VARCHAR(10),
-      "data exame" DATE,
-      "tipo exame" VARCHAR(50),
-      "limites tipo exame" VARCHAR(10),
-      "resultado tipo exame" INTEGER
+      "registration_number" VARCHAR(14),
+      "patient_name" VARCHAR(100),
+      "patient_email" VARCHAR(100),
+      "patient_birth_date" DATE,
+      "patient_address" VARCHAR(100),
+      "patient_city" VARCHAR(50),
+      "patient_state" VARCHAR(50),
+      "doctor_council_rn" VARCHAR(10),
+      "doctor_council_state" VARCHAR(2),
+      "doctor_name" VARCHAR(100),
+      "doctor_email" VARCHAR(100),
+      "exam_token" VARCHAR(10),
+      "exam_date" DATE,
+      "exam_type" VARCHAR(50),
+      "exam_values" VARCHAR(10),
+      "exam_result" INTEGER
     )'
   )
   end
   
+  def all 
+    exams = @conn.exec('SELECT * FROM exams').to_a
+  end
+
   def insert_exam(exam)
-    columns = exam.keys.map { |key| @conn.escape_identifier(key) }.join(', ')
-    values = exam.values.map { |value| @conn.escape_literal(value) }.join(', ')
-    @conn.exec(%Q{INSERT INTO exams (#{columns}) VALUES (#{values})})
+    @conn.exec_params(
+      "INSERT INTO exams VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10,
+      $11, $12, $13, $14, $15, $16)", exam.values.to_a
+    )
+    Exam.new(exam)
+  end
+
+  def import_from_csv(csv_data)
+    csv_data.map do |exam|
+      insert_exam(exam)
+    end
   end
 end

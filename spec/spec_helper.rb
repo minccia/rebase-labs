@@ -1,6 +1,9 @@
 require 'pg'
-require 'csv_data_service'
-require 'query_service'
+Dir[File.dirname(__FILE__) + '/../lib/*.rb'].each do |file| 
+  require File.basename(file, File.extname(file))
+end
+
+
 
 RSpec.configure do |config|
   test_conn = PG.connect(host: 'test-postgres', dbname: 'postgres', user: 'postgres')
