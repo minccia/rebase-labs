@@ -1,6 +1,5 @@
 require 'pg'
 require_relative 'exam'
-require_relative 'database_translator'
 
 class QueryService
   def initialize(host:, dbname:, user:)
