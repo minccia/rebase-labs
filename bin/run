@@ -6,7 +6,8 @@ docker run \
   -w /app \
   -v $(pwd):/app \
   -v ruby_volume_rebase_labs:/usr/local/bundle \
+  -v gem_cache_reabse_labs:/root/.local/share/gem \
   -p 3000:3000 \
   --network rebase_labs \
   ruby \
-  bash -c "gem install rack sinatra puma && ruby server.rb"
+  bash -c "ruby server.rb"

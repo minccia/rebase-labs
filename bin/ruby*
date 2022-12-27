@@ -6,7 +6,8 @@ docker run \
   -w /app \
   -v $(pwd):/app \
   -v ruby_volume_rebase_labs:/usr/local/bundle \
+  -v gem_cache_reabse_labs:/root/.local/share/gem \
   --network rebase_labs \
   -it \
   ruby \
-  bash -c "gem install pg rspec && rspec --init && bash"
+  bash -c "gem install rack sinatra puma rspec pg && bash"

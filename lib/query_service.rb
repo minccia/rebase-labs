@@ -25,12 +25,13 @@ class QueryService
       "tipo exame" VARCHAR(50),
       "limites tipo exame" VARCHAR(10),
       "resultado tipo exame" INTEGER
-    )
-  })')
+    )'
+  )
   end
-
+  
   def insert_exam(exam)
     columns = exam.keys.map { |key| @conn.escape_identifier(key) }.join(', ')
     values = exam.values.map { |value| @conn.escape_literal(value) }.join(', ')
     @conn.exec(%Q{INSERT INTO exams (#{columns}) VALUES (#{values})})
   end
+end

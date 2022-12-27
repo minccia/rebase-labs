@@ -1,16 +1,15 @@
 require 'spec_helper'
-require 'csv_data_service.rb'
 
 describe CSVDataService do 
   context '.parse_csv' do 
     it 'Recebe o caminho de um arquivo CSV e devolve um array de hashes ruby com os dados' do 
       result =  CSVDataService.parse_csv("#{Dir.pwd}/spec/support/exams.csv")
       expected_csv_headers = [
-                              "cpf", "nome paciente", "email paciente", "data nascimento paciente",
-                              "endereço/rua paciente", "cidade paciente", "estado patiente", "crm médico",
-                              "crm médico estado", "nome médico", "email médico", "token resultado exame",
-                              "data exame", "tipo exame", "limites tipo exame", "resultado tipo exame"
-                             ]
+        "cpf", "nome paciente", "email paciente", "data nascimento paciente",
+        "endereço/rua paciente", "cidade paciente", "estado patiente", "crm médico",
+        "crm médico estado", "nome médico", "email médico", "token resultado exame",
+        "data exame", "tipo exame", "limites tipo exame", "resultado tipo exame"
+      ]
 
       expect(result.class).to eq Array 
       expect(result.first.keys).to eq expected_csv_headers
