@@ -7,6 +7,19 @@ class QueryService
                        user: user)
   end
 
+  def table_exists?
+    query = @conn.exec(
+      "SELECT EXISTS (
+        SELECT FROM 
+          pg_tables
+        WHERE 
+          schemaname = 'public' AND 
+          tablename  = 'exams'
+      );"
+    )
+    query.values == [["t"]] ? true : false 
+  end
+
   def create_table
     @conn.exec(
       'CREATE TABLE IF NOT EXISTS exams (
@@ -28,6 +41,10 @@ class QueryService
       "exam_result" INTEGER
     )'
   )
+  end
+
+  def drop_table 
+    @conn.exec('DROP TABLE IF EXISTS exams')
   end
   
   def all 

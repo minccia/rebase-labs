@@ -1,39 +1,30 @@
 require 'spec_helper'
 
 describe QueryService do 
-  context '#create_table' do 
-    it 'Cria a tabela de exames no banco de dados com sucesso' do 
+  context '#table_exists?' do 
+    it 'Retorna true se a tabela existir no banco de dados' do 
       query_service = QueryService.new(host: 'test-postgres', dbname: 'postgres', user: 'postgres')
-      conn = PG.connect(host: 'test-postgres', dbname: 'postgres', user: 'postgres')
 
       query_service.create_table 
-      result = conn.exec(
-        "SELECT EXISTS (
-          SELECT FROM 
-            pg_tables
-          WHERE 
-            schemaname = 'public' AND 
-            tablename  = 'exams'
-        );"
-      )
 
-      expect(result.values).to eq [["t"]]
+      expect(query_service.table_exists?).to be_truthy
     end
 
-    it 'E a tabela não foi criada' do 
-      conn = PG.connect(host: 'test-postgres', dbname: 'postgres', user: 'postgres')
+    it 'Retorna false se a tabela não existir no banco de dados' do 
+      query_service = QueryService.new(host: 'test-postgres', dbname: 'postgres', user: 'postgres')
 
-      result = conn.exec(
-        "SELECT EXISTS (
-          SELECT FROM 
-            pg_tables
-          WHERE 
-            schemaname = 'public' AND 
-            tablename  = 'exams'
-        );"
-      )
+      expect(query_service.table_exists?).to be_falsy
+    end
+  end
 
-      expect(result.values).to eq [["f"]]
+  context '#drop_table' do 
+    it 'Derruba a tabela do banco de dados com sucesso' do 
+    query_service = QueryService.new(host: 'test-postgres', dbname: 'postgres', user: 'postgres')
+
+    query_service.create_table 
+    query_service.drop_table 
+
+    expect(query_service.table_exists?).to be_falsy
     end
   end
 
