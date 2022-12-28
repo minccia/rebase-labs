@@ -37,22 +37,22 @@ describe QueryService do
       query_service.insert_exam(exam_data)
       result = query_service.all 
 
-      expect(result.first["registration_number"]).to eq "048.123.189-19"
-      expect(result.first["patient_name"]).to eq "Ana Júlia"
-      expect(result.first["patient_email"]).to eq "anajulia@gmail.com"
-      expect(result.first["patient_birth_date"]).to eq "2022-09-20"
-      expect(result.first["patient_address"]).to eq "Rua das flores, 59"
-      expect(result.first["patient_city"]).to eq "Fortaleza"
-      expect(result.first["patient_state"]).to eq "Ceará"
-      expect(result.first["doctor_council_rn"]).to eq "00122910"
-      expect(result.first["doctor_council_state"]).to eq "CE"      
-      expect(result.first["doctor_name"]).to eq "Dra. Ana Julia do Multiverso" 
-      expect(result.first["doctor_email"]).to eq "anajuliadomultiverso@gmail.com" 
-      expect(result.first["exam_token"]).to eq "09209120"
-      expect(result.first["exam_date"]).to eq "2022-09-21"
-      expect(result.first["exam_type"]).to eq "exame do pézinho"
-      expect(result.first["exam_values"]).to eq "100-200"
-      expect(result.first["exam_result"]).to eq "132"
+      expect(result.first.registration_number).to eq "048.123.189-19"
+      expect(result.first.patient_name).to eq "Ana Júlia"
+      expect(result.first.patient_email).to eq "anajulia@gmail.com"
+      expect(result.first.patient_birth_date).to eq "2022-09-20"
+      expect(result.first.patient_address).to eq "Rua das flores, 59"
+      expect(result.first.patient_city).to eq "Fortaleza"
+      expect(result.first.patient_state).to eq "Ceará"
+      expect(result.first.doctor_council_rn).to eq "00122910"
+      expect(result.first.doctor_council_state).to eq "CE"      
+      expect(result.first.doctor_name).to eq "Dra. Ana Julia do Multiverso" 
+      expect(result.first.doctor_email).to eq "anajuliadomultiverso@gmail.com" 
+      expect(result.first.exam_token).to eq "09209120"
+      expect(result.first.exam_date).to eq "2022-09-21"
+      expect(result.first.exam_type).to eq "exame do pézinho"
+      expect(result.first.exam_values).to eq "100-200"
+      expect(result.first.exam_result).to eq "132"
     end
   end
 

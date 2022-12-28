@@ -1,5 +1,6 @@
 require 'pg'
 require_relative 'exam'
+require_relative 'database_translator'
 
 class QueryService
   def initialize(host:, dbname:, user:)
@@ -49,6 +50,7 @@ class QueryService
   
   def all 
     exams = @conn.exec('SELECT * FROM exams').to_a
+    exams.map { |exam| Exam.new(exam) }
   end
 
   def insert_exam(exam)
@@ -56,7 +58,7 @@ class QueryService
       "INSERT INTO exams VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10,
       $11, $12, $13, $14, $15, $16)", exam.values.to_a
     )
-    Exam.new(exam)
+    Exam.new(DatabaseTranslator.pt_to_en(exam))
   end
 
   def import_from_csv(csv_data)

@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe DatabaseTranslator do 
-  context '.translate_columns' do 
-    it 'Traduz nome das colunas da tabela exams de inglês para português' do 
+  context '.pt_to_en' do 
+    it 'Traduz nome das colunas da tabela exams de português para inglês' do 
       exam_hash = { 
         "cpf" => "048.123.189-19",
         "nome paciente" => "Ana Júlia",
@@ -22,7 +22,7 @@ describe DatabaseTranslator do
         "resultado tipo exame" => "1323" 
       }
   
-      result = DatabaseTranslator.translate_columns(exam_hash)
+      result = DatabaseTranslator.pt_to_en(exam_hash)
   
       expect(result.keys).to eq [
         "registration_number", "patient_name", "patient_email", "patient_birth_date",

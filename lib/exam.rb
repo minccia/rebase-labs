@@ -1,5 +1,3 @@
-require_relative 'database_translator'
-
 class Exam 
   @@attributes = [:registration_number, :patient_name, :patient_email, :patient_birth_date, 
                   :patient_address, :patient_city, :patient_state, :doctor_council_rn,
@@ -8,8 +6,7 @@ class Exam
   
   attr_accessor *@@attributes 
 
-  def initialize params
-    data = DatabaseTranslator.translate_columns(params)
+  def initialize data
     @registration_number = data["registration_number"]
     @patient_name = data["patient_name"]
     @patient_email = data.fetch("patient_email")

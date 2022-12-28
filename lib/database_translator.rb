@@ -1,5 +1,5 @@
 class DatabaseTranslator
-  def self.translate_columns(exam)
+  def self.pt_to_en(exam)
     {
       "registration_number" => exam["cpf"],
       "patient_name" => exam["nome paciente"],
