@@ -64,4 +64,8 @@ class QueryService
       insert_exam(exam)
     end
   end
+
+  def close_connection 
+    @conn.close 
+  end
 end
