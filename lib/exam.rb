@@ -12,10 +12,9 @@ class Exam
     end
   end
   
-  def as_json
+  def as_hash
     instance_variables.each.with_object({}) do |var, hash|
       hash.send :store, var.to_s.delete("@"), instance_variable_get(var)
     end
-    .to_json
   end
 end

@@ -7,7 +7,7 @@ class DatabaseTranslator
       "data exame", "tipo exame", "limites tipo exame", "resultado tipo exame"
     ]
 
-    Exam.new()
+    Exam.new({})
       .instance_variables
       .each_with_object({})
       .with_index do |(var, hash), index|

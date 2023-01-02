@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe Exam do 
-  context '#as_json'do 
-    it 'Converte um objeto da classe Exam em um JSON com seus atributos' do 
+  context '#as_hash'do 
+    it 'Converte um objeto da classe Exam em um hash com seus atributos' do 
       params = { 
         "registration_number" => "048.123.189-19",
         "patient_name" => "Ana Júlia",
@@ -23,15 +23,9 @@ describe Exam do
       }
 
       exam = Exam.new(params)
-      result = exam.as_json
+      result = exam.as_hash
 
-      expect(result.class).to eq String
-      expect(result).to include "registration_number"
-      expect(result).to include "048.123.189-19"
-      expect(result).to include "patient_name"
-      expect(result).to include "Ana Júlia"
-      expect(result).to include "patient_email"
-      expect(result).to include "anajulia@gmail.com"
+      expect(result).to eq params
     end
   end
 end
