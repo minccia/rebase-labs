@@ -1,5 +1,5 @@
 class DatabaseTranslator
-  def self.pt_to_en(exam)
+  def self.pt_to_en(params)
     incoming_vars = [
       "cpf", "nome paciente", "email paciente", "data nascimento paciente",
       "endereço/rua paciente", "cidade paciente", "estado patiente", "crm médico",
@@ -11,7 +11,7 @@ class DatabaseTranslator
       .instance_variables
       .each_with_object({})
       .with_index do |(var, hash), index|
-        hash.send :store, var.to_s.delete('@'), exam[incoming_vars[index]]
+        hash.send :store, var.to_s.delete('@'), params[incoming_vars[index]]
     end
   end
 end
