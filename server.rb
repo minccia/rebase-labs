@@ -1,18 +1,21 @@
 require 'sinatra'
 require 'rack/handler/puma'
 require 'csv'
+require 'json'
+require "#{Dir.pwd}/lib/query_service"
+
+get '/api/v1/exams' do 
+  content_type :json
+  
+  conn = QueryService.new(host: 'postgres', dbname: 'postgres', user: 'postgres')
+  exams = conn.all 
+  exams.map do |exam|
+    exam.as_hash
+  end
+  .to_json
+end
 
 get '/tests' do
-  rows = CSV.read("./data.csv", col_sep: ';')
-
-  columns = rows.shift
-
-  rows.map do |row|
-    row.each_with_object({}).with_index do |(cell, acc), idx|
-      column = columns[idx]
-      acc[column] = cell
-    end
-  end.to_json
 end
 
 Rack::Handler::Puma.run(
