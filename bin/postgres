@@ -1,0 +1,7 @@
+#!/bin/bash
+
+docker-compose run \
+ --rm \
+ --name postgres \
+ -v pgdata:/var/lib/postgresql/data \
+ postgres 
