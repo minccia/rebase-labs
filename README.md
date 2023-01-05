@@ -4,9 +4,11 @@ Uma aplicação web para listagem de exames médicos, criada para fins didático
 
 ### Requisitos
 
-Para rodar este projeto, é necessário que você possua o Docker instalado na máquina que será utilizada. Caso ainda não possua, você pode seguir as instruções do link abaixo na documentação oficial para fazer a instalação:
+Para rodar este projeto, é necessário que você possua o Docker instalado na máquina que será utilizada. Caso ainda não possua, você pode seguir as instruções da documentação oficial para fazer a instalação:
 
 [Docker-Desktop](https://www.docker.com/products/docker-desktop/)
+
+![Screenshot from 2023-01-05 14-34-42](https://user-images.githubusercontent.com/85851976/210844376-f4b1f662-4172-4345-8763-39fef184af3b.png)
 
 ### Instalação
 
