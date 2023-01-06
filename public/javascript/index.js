@@ -28,10 +28,42 @@ fetch(api_url)
       tableRow.appendChild(examResult);
       fragment.appendChild(tableRow);
     })
-  })
-  .then(() => {
+  }).then(() => {
     document.querySelector('#table-body').appendChild(fragment);
-  })
-  .catch(function(error) {
-    console.log(error)
+    }).catch(function(error) {
+      console.log(error)
+  }
+);
+
+const fileInput = document.getElementById('file-input');
+const importButton = document.getElementById('submit-button');
+
+async function readCSV(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = event => {
+      const csv = event.target.result;
+      resolve(csv);
+    };
+    reader.onerror = reject;
+    reader.readAsText(file);
   });
+};
+
+importButton.addEventListener('click', async () => {
+  const file = fileInput.files[0];
+  const csv = await readCSV(file);
+  const response = await fetch('http://localhost:3000/import', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'text/csv',
+    },
+    body: csv,
+  });
+
+  if (response.ok) {
+    console.log('Success');
+  } else {
+    console.error('Error');
+  }
+});

@@ -1,8 +1,11 @@
 require 'sinatra'
 require 'rack/handler/puma'
-require 'csv'
 require 'json'
+require 'sidekiq'
 require "#{Dir.pwd}/lib/query_service"
+require "#{Dir.pwd}/lib/csv_data_service"
+require "#{Dir.pwd}/jobs/import_csv_job"
+
 
 set :public_folder, 'public'
 
@@ -20,6 +23,17 @@ end
 
 get '/tests' do
   send_file File.join(settings.public_folder, 'views/index.html')
+end
+
+post '/import' do 
+  request_body = request.body.read.force_encoding("UTF-8")
+
+  File.write('./tmp/uploaded.csv', csv)
+  csv_data = CSVDataService.parse_csv('./tmp/uploaded.csv').to_json
+  File.delete('./tmp/uploaded.csv')
+  ImportCSVJob.perform_async(csv_data)
+
+  'Já botei tudo no banco meu queridão 😎'
 end
 
 Rack::Handler::Puma.run(

@@ -2,8 +2,7 @@
 
 docker-compose run \
   --rm \
-  --name sinatra \
-  --service-ports \
+  --name sidekiq \
   -e REDIS_URL=redis://redis:6379/0 \
   app \
-  bash -c "ruby server.rb"
+  bash -c "sidekiq -r ./jobs/*"

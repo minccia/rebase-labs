@@ -4,10 +4,12 @@
       <title> Exames Médicos </title> 
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <script type="text/javascript" src="../javascript/index.js"></script>
   </head>
   <body>
       <h1> Lista de Exames </h1>
+      <label class="custom-uploader" for="file-input"> Importe seu CSV </label> 
+      <input id="file-input" name="fileToUpload" accept=".csv" type="file" />
+      <button class="submit" id='submit-button' name="submit" type="submit"> Enviar </button>
       <table class="js-exams-table" id="table">
           <tdhead class="js-exams-table" id="table-head">
               <tr>
@@ -22,5 +24,6 @@
           <tbody class="js-exams-table" id="table-body">
           </tbody>
       </table>
+    <script type="text/javascript" src="../javascript/index.js"></script>
   </body>
 </html>
