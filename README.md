@@ -52,13 +52,13 @@ Neste projeto, utilizamos o Rspec como ferramenta de testes automatizados. Para 
 
 ### Endpoints
 
-#### /tests 
+#### GET /tests 
 
 Este endpoint irá listar todos os exames registrados no banco de dados formatados em uma tabela simples, como na imagem abaixo:
 
 ![Screenshot from 2023-01-05 14-23-10](https://user-images.githubusercontent.com/85851976/210842554-227c30fc-ab46-44c6-9fdc-69de9b6c82ff.png)
 
-#### /api/v1/exams
+#### GET /api/v1/exams
 
 Este endpoint irá listar todos os exames do banco de dados em formato JSON, conforme o modelo abaixo:
 
@@ -83,3 +83,35 @@ Este endpoint irá listar todos os exames do banco de dados em formato JSON, con
   "exam_result": "00" 
 }
 ```
+
+#### POST /api/v1/import_csv
+
+Por meio deste endpoint é possível enviar um arquivo `.csv` no body da requisição e os seus dados serão importados para o banco de dados do servidor
+
+A primeira linha do documento deve possuir os seguintes cabeçalhos separados por ponto e vírgula:
+
+`cpf;nome paciente;email paciente;data nascimento paciente;endereço/rua paciente;cidade paciente;estado patiente;crm médico;crm médico estado;nome médico;email médico;token resultado exame;data exame;tipo exame;limites tipo exame;resultado tipo exame`
+
+E os dados correspondentes nas linhas seguintes: 
+
+`000.000.000-00;Fulana Ciclana de Beltrana;fulanaciclana@email.com;0000-00-00;000 Rua Ines;AlgumaCidade;AlgumEstado;0000000000;AA;Fulana Ciclana de Beltrana;fulanaciclana@email.com;AAAA00;0000-00-00;TipoExame;00-00;00`
+
+##### Especificações 
+
+- **Todos** os campos são obrigatórios.
+- `cpf` deve possuir 14 caracteres, incluindo `.` e `-`
+- `nome paciente` deve possuir até 100 caracteres
+- `email paciente` deve possuir até 100 caracteres 
+- `data nascimento paciente` deve estar no formato `YYYY-MM-DD`
+- `endereço/rua paciente` deve possuir até 100 caracteres
+- `cidade paciente` deve possuir até 50 caracteres
+- `estado patiente` deve possuir até 50 caracteres
+- `crm médico` deve possuir até 10 caracteres 
+- `crm médico estado` deve possuir 2 caracteres que representem a sigla do estado. Exemplo (Ceará: CE)
+- `nome médico` deve possuir até 100 caracteres
+- `email médico` deve possuir até 100 caracteres
+- `token resultado exame` deve possuir até 10 caracteres
+- `data exame` deve estar no formato `YYYY-MM-DD`
+- `tipo exame` deve possuir até 50 caracteres
+- `limites tipo exame` deve possuir até 10 caracteres
+- `resultado tipo exame` deve ser um valor do tipo `INTEGER`
