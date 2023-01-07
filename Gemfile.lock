@@ -15,6 +15,7 @@ GEM
       rack
     redis-client (0.11.2)
       connection_pool
+    require_all (3.0.0)
     rspec (3.12.0)
       rspec-core (~> 3.12.0)
       rspec-expectations (~> 3.12.0)
@@ -48,6 +49,7 @@ DEPENDENCIES
   pg
   puma
   rack
+  require_all
   rspec
   sidekiq
   sinatra

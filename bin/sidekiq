@@ -5,4 +5,4 @@ docker-compose run \
   --name sidekiq \
   -e REDIS_URL=redis://redis:6379/0 \
   app \
-  bash -c "sidekiq -r ./jobs/*"
+  bash -c "sidekiq -r ./app/jobs/*"
