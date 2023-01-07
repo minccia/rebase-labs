@@ -1,4 +1,4 @@
-const api_url = 'http://localhost:3000/api/v1/exams';
+const examsAPIUrl = 'http://localhost:3000/api/v1/exams';
 const fragment = new DocumentFragment();
 
 function createTableData(textContent) {
@@ -7,7 +7,7 @@ function createTableData(textContent) {
   return tableData
 };
 
-fetch(api_url)
+fetch(examsAPIUrl)
   .then((response) => response.json())
   .then((data) => {
     data.forEach(function(object) {
@@ -30,40 +30,7 @@ fetch(api_url)
     })
   }).then(() => {
     document.querySelector('#table-body').appendChild(fragment);
-    }).catch(function(error) {
+  }).catch(function(error) {
       console.log(error)
   }
 );
-
-const fileInput = document.getElementById('file-input');
-const importButton = document.getElementById('submit-button');
-
-async function readCSV(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = event => {
-      const csv = event.target.result;
-      resolve(csv);
-    };
-    reader.onerror = reject;
-    reader.readAsText(file);
-  });
-};
-
-importButton.addEventListener('click', async () => {
-  const file = fileInput.files[0];
-  const csv = await readCSV(file);
-  const response = await fetch('http://localhost:3000/import', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'text/csv',
-    },
-    body: csv,
-  });
-
-  if (response.ok) {
-    console.log('Success');
-  } else {
-    console.error('Error');
-  }
-});

@@ -7,23 +7,28 @@
   </head>
   <body>
       <h1> Lista de Exames </h1>
-      <label class="custom-uploader" for="file-input"> Importe seu CSV </label> 
-      <input id="file-input" name="fileToUpload" accept=".csv" type="file" />
-      <button class="submit" id='submit-button' name="submit" type="submit"> Enviar </button>
-      <table class="js-exams-table" id="table">
-          <tdhead class="js-exams-table" id="table-head">
-              <tr>
-                  <th> CPF </th>
-                  <th> Nome do Paciente </th>
-                  <th> Médico Responsável </th>
-                  <th> Tipo de Exame </th>
-                  <th> Limites do exame </th>
-                  <th> Resultado do exame </th>
-              </tr>
-          </tdhead>
-          <tbody class="js-exams-table" id="table-body">
-          </tbody>
-      </table>
-    <script type="text/javascript" src="../javascript/index.js"></script>
+      <p>
+        <label class="custom-uploader" for="file-input"> Importe seu CSV </label> 
+        <input id="file-input" name="fileToUpload" accept=".csv" type="file" />
+        <button class="submit" id='submit-button' name="submit" type="submit"> Enviar </button>
+      </p>
+      <p>
+        <table class="js-exams-table" id="table">
+            <tdhead class="js-exams-table" id="table-head">
+                <tr>
+                    <th> CPF </th>
+                    <th> Nome do Paciente </th>
+                    <th> Médico Responsável </th>
+                    <th> Tipo de Exame </th>
+                    <th> Limites do exame </th>
+                    <th> Resultado do exame </th>
+                </tr>
+            </tdhead>
+            <tbody class="js-exams-table" id="table-body">
+            </tbody>
+        </table>
+      </p>
+      <script type="text/javascript" src="../javascript/exams_api.js"></script>
+      <script type="text/javascript" src="../javascript/import_csv_api.js"></script>
   </body>
 </html>
