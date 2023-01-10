@@ -30,7 +30,15 @@ Para rodar este projeto, é necessário que você possua o Docker instalado na m
 
        docker-compose run app ruby import_from_csv.rb
        
-3. Após finalizada a etapa anterior, suba o servidor Sinatra com o comando:
+3. Suba o servidor Redis com o comando:
+
+       bin/redis
+       
+4. Suba o servidor Sidekiq com o comando: 
+
+       bin/sidekiq
+       
+3. Suba o servidor sinatra com o comando:
 
        bin/sinatra 
        
